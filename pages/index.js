@@ -65,63 +65,63 @@ export default function Home() {
       key: '0',
       volume: 0,
       receita: 0 * produto.preco,
-      custoTotal: 0 * produto.custoPreco,
+      custoTotal: 0 * produto.custoPreco + parseInt(custoFixo),
       lucro: 0 * produto.custoPreco - parseInt(custoFixo)
     },
     {
       key: '1',
       volume: 100,
       receita: 100 * produto.preco,
-      custoTotal: 100 * produto.custoPreco,
+      custoTotal: 100 * produto.custoPreco + parseInt(custoFixo),
       lucro: 100 * produto.custoPreco - parseInt(custoFixo)
     },
     {
       key: '2',
       volume: 200,
       receita: 200 * produto.preco,
-      custoTotal: 200 * produto.custoPreco,
+      custoTotal: 200 * produto.custoPreco + parseInt(custoFixo),
       lucro: 200 * produto.custoPreco - parseInt(custoFixo)
     },
     {
       key: '3',
       volume: 300,
       receita: 300 * produto.preco,
-      custoTotal: 300 * produto.custoPreco,
+      custoTotal: 300 * produto.custoPreco + parseInt(custoFixo),
       lucro: 300 * produto.custoPreco - parseInt(custoFixo)
     },
     {
       key: '4',
       volume: 400,
       receita: 400 * produto.preco,
-      custoTotal: 400 * produto.custoPreco,
+      custoTotal: 400 * produto.custoPreco + parseInt(custoFixo),
       lucro: 400 * produto.custoPreco - parseInt(custoFixo)
     },
     {
       key: '5',
       volume: 500,
       receita: 500 * produto.preco,
-      custoTotal: 500 * produto.custoPreco,
+      custoTotal: 500 * produto.custoPreco + parseInt(custoFixo),
       lucro: 500 * produto.custoPreco - parseInt(custoFixo)
     },
     {
       key: '6',
       volume: 600,
       receita: 600 * produto.preco,
-      custoTotal: 600 * produto.custoPreco,
+      custoTotal: 600 * produto.custoPreco + parseInt(custoFixo),
       lucro: 600 * produto.custoPreco - parseInt(custoFixo)
     },
     {
       key: '7',
       volume: 700,
       receita: 700 * produto.preco,
-      custoTotal: 700 * produto.custoPreco,
+      custoTotal: 700 * produto.custoPreco + parseInt(custoFixo),
       lucro: 700 * produto.custoPreco - parseInt(custoFixo)
     },
     {
       key: '8',
       volume: 800,
       receita: 800 * produto.preco,
-      custoTotal: 800 * produto.custoPreco,
+      custoTotal: 800 * produto.custoPreco + parseInt(custoFixo),
       lucro: 800 * produto.custoPreco - parseInt(custoFixo)
     },
   ]
