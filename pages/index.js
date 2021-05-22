@@ -36,29 +36,43 @@ export default function Home() {
 
   const [custoFixo, setCustoFixo] = React.useState(0)
 
-  const [series, setSeries] = React.useState([
+  const series = [
     {
       name: 'Receita',
       data: [
-        { category: '0', value: 0},
-        { category: '800', value: 20000 },
+        { category: '0', value: 0 * produto.preco},
+        { category: '100', value: 100 * produto.preco},
+        { category: '200', value: 200 * produto.preco},
+        { category: '300', value: 300 * produto.preco},
+        { category: '400', value: 400 * produto.preco},
+        { category: '500', value: 500 * produto.preco},
+        { category: '600', value: 600 * produto.preco},
+        { category: '700', value: 700 * produto.preco},
+        { category: '800', value: 800 * produto.preco},
       ],
     },
     {
       name: 'Custo Total',
       data: [
-        { category: '0', value: 5000 },
-        { category: '800', value: 15000 },
+        { category: '0', value: 0 * produto.custoPreco + parseInt(custoFixo)},
+        { category: '100', value: 100 * produto.custoPreco + parseInt(custoFixo)},
+        { category: '200', value: 200 * produto.custoPreco + parseInt(custoFixo)},
+        { category: '300', value: 300 * produto.custoPreco + parseInt(custoFixo)},
+        { category: '400', value: 400 * produto.custoPreco + parseInt(custoFixo)},
+        { category: '500', value: 500 * produto.custoPreco + parseInt(custoFixo)},
+        { category: '600', value: 600 * produto.custoPreco + parseInt(custoFixo)},
+        { category: '700', value: 700 * produto.custoPreco + parseInt(custoFixo)},
+        { category: '800', value: 800 * produto.custoPreco + parseInt(custoFixo)},
+        
       ],
     },
-  ])
+  ]
 
   /* Table */
+  console.log(series)
   
-  /* let receita = item.volume * produto.preco
-  let volumeDeItensECusto = item.volume * produto.custoPreco
-  let custoTotal = volumeDeItensECusto + parseInt(custoFixo)
-  let lucro = custoTotal - receita */
+  let custoTotal = parseInt(produto.custoPreco) + parseInt(custoFixo)
+  
 
   const dataSource = [
     {
@@ -122,7 +136,7 @@ export default function Home() {
       volume: 800,
       receita: 800 * produto.preco,
       custoTotal: 800 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 800 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (800 * produto.custoPreco + parseInt(custoFixo)) - (800 * produto.custoPreco) 
     },
   ]
   /* Table */
