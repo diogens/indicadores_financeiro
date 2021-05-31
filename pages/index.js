@@ -1,7 +1,7 @@
 import styles from '../styles.module.css'
 import 'antd/dist/antd.css'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Button, DatePicker, version, Table } from "antd"
+import { Button, DatePicker, Table, Input, Tooltip as TooltipAntd } from "antd"
 
 const columns = [
   {
@@ -23,6 +23,11 @@ const columns = [
     title: 'Lucro',
     dataIndex: 'lucro',
     key: 'lucro',
+  },
+  {
+    title: 'Custo Variavel',
+    dataIndex: 'custoVariavel',
+    key: 'custoVariavel',
   }
 ];
 
@@ -69,8 +74,6 @@ export default function Home() {
   ]
 
   /* Table */
-  console.log(series)
-  
   let custoTotal = parseInt(produto.custoPreco) + parseInt(custoFixo)
   
 
@@ -80,63 +83,72 @@ export default function Home() {
       volume: 0,
       receita: 0 * produto.preco,
       custoTotal: 0 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 0 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (0 * produto.preco) - (0 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 0 * produto.custoPreco
     },
     {
       key: '1',
       volume: 100,
       receita: 100 * produto.preco,
       custoTotal: 100 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 100 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (100 * produto.preco) - (100 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 100 * produto.custoPreco
     },
     {
       key: '2',
       volume: 200,
       receita: 200 * produto.preco,
       custoTotal: 200 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 200 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (200 * produto.preco) - (200 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 200 * produto.custoPreco
     },
     {
       key: '3',
       volume: 300,
       receita: 300 * produto.preco,
       custoTotal: 300 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 300 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (300 * produto.preco) - (300 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 300 * produto.custoPreco
     },
     {
       key: '4',
       volume: 400,
       receita: 400 * produto.preco,
       custoTotal: 400 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 400 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (400 * produto.preco) - (400 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 400 * produto.custoPreco
     },
     {
       key: '5',
       volume: 500,
       receita: 500 * produto.preco,
       custoTotal: 500 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 500 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (500 * produto.preco) - (500 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 500 * produto.custoPreco
     },
     {
       key: '6',
       volume: 600,
       receita: 600 * produto.preco,
       custoTotal: 600 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 600 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (600 * produto.preco) - (600 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 600 * produto.custoPreco
     },
     {
       key: '7',
       volume: 700,
       receita: 700 * produto.preco,
       custoTotal: 700 * produto.custoPreco + parseInt(custoFixo),
-      lucro: 700 * produto.custoPreco - parseInt(custoFixo)
+      lucro: (700 * produto.preco) - (700 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 700 * produto.custoPreco
     },
     {
       key: '8',
       volume: 800,
       receita: 800 * produto.preco,
       custoTotal: 800 * produto.custoPreco + parseInt(custoFixo),
-      lucro: (800 * produto.custoPreco + parseInt(custoFixo)) - (800 * produto.custoPreco) 
+      lucro: (800 * produto.preco) - (800 * produto.custoPreco + parseInt(custoFixo)),
+      custoVariavel: 800 * produto.custoPreco
     },
   ]
   /* Table */
@@ -151,42 +163,107 @@ export default function Home() {
   
   
   return (
-    <div className={styles.hello}>
-      <div style={{display: 'flex', flexDirection: 'column', width: 300}}>
-        <h3>Produto</h3>   
-        <input type="number" onBlur={(e) => {
-          setProduto({...produto, preco: e.target.value, margem: e.target.value - produto.custoPreco})
-        }}/>    
-        <input type="number" onBlur={(e) => {
-          setProduto({...produto, custoPreco: e.target.value, margem: produto.preco - e.target.value})
-        }}/>
-        <input type="number" disabled value={produto.margem}/>
-      </div>
-      <hr />
-      <div style={{display: 'flex', flexDirection: 'column', width: 300}}>
-        <h3>Empresa</h3>   
-        <input type="number" onBlur={(e) => setCustoFixo(e.target.value)}/>
-      </div>
-      <hr />
-      <div style={{display: 'flex', flexDirection: 'column', width: 300}}>
-        <h3>Ponto de Equilíbrio</h3>  
-        <input  disabled value={ `R$ ${custoFixo / produto.margem}` }/>
+    <div className={styles.wrapperContainer}>
+      <div style={{display: 'flex', flexDirection: 'row'}}>
+        <span>
+          <h3>Produto</h3>
+          <TooltipAntd
+            trigger={['focus']}
+            title="Preço do Produto"
+            placement="topLeft"
+            overlayClassName="numeric-input"
+          >
+            <Input
+              type="number"
+              placeholder="Input a number"
+              onBlur={(e) => {
+                setProduto({...produto, preco: e.target.value, margem: e.target.value - produto.custoPreco})
+              }}
+              maxLength={25}
+            />
+          </TooltipAntd>
+
+          <TooltipAntd
+            trigger={['focus']}
+            title="Custo variável"
+            placement="topLeft"
+            overlayClassName="numeric-input"
+          >
+            <Input
+              type="number"
+              placeholder="Input a number"
+              onBlur={(e) => {
+                setProduto({...produto, custoPreco: e.target.value, margem: produto.preco - e.target.value})
+              }}
+              maxLength={25}
+            />
+          </TooltipAntd>
+
+          <TooltipAntd
+            trigger={['focus']}
+            title="{title}"
+            placement="topLeft"
+            overlayClassName="numeric-input"
+          >
+            <Input
+              type="number"
+              disabled
+              placeholder="Input a number"
+              value={produto.margem}
+              maxLength={25}
+            />
+          </TooltipAntd>
+
+          <hr />
+
+          <h3>Empresa</h3>   
+          <TooltipAntd
+            trigger={['focus']}
+            title="{title}"
+            placement="topLeft"
+            overlayClassName="numeric-input"
+          >
+            <Input
+              type="number"
+              placeholder="Input a number"
+              maxLength={25}
+              onBlur={(e) => setCustoFixo(e.target.value)}
+            />
+          </TooltipAntd>
+
+          <hr />
+
+          <h3>Ponto de Equilíbrio</h3>
+          <TooltipAntd
+            trigger={['focus']}
+            title="{title}"
+            placement="topLeft"
+            overlayClassName="numeric-input"
+          >
+            <Input
+              disabled 
+              value={ `R$ ${parseFloat(custoFixo / produto.margem) | 0}` }
+              maxLength={25}
+            />
+          </TooltipAntd>  
+        </span>
+        <span className={styles.wrapperBox}> 
+          <LineChart width={500} height={300}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="category" type="number" name="stature"/>
+            <YAxis dataKey="value" />
+            <Tooltip />
+            <Legend />
+            {series.map((s) => (
+              <Line dataKey="value" data={s.data} name={s.name} key={s.name} />
+            ))}
+          </LineChart>     
+        </span>
       </div>
       <hr />
       <Table dataSource={dataSource} columns={columns} />
       <hr />
-      <div styles={{width: 300}}>
-        <LineChart width={500} height={300}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="category" type="number" name="stature"/>
-          <YAxis dataKey="value" />
-          <Tooltip />
-          <Legend />
-          {series.map((s) => (
-            <Line dataKey="value" data={s.data} name={s.name} key={s.name} />
-          ))}
-        </LineChart>
-      </div>
+      
     </div>
   )
 }
