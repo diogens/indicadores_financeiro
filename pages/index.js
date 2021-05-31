@@ -219,13 +219,13 @@ export default function Home() {
           <h3>Empresa</h3>   
           <TooltipAntd
             trigger={['focus']}
-            title="{title}"
+            title="Custo Fixo"
             placement="topLeft"
             overlayClassName="numeric-input"
           >
             <Input
               type="number"
-              placeholder="Input a number"
+              placeholder="Custo Fixo"
               maxLength={25}
               onBlur={(e) => setCustoFixo(e.target.value)}
             />
