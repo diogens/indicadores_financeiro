@@ -175,7 +175,7 @@ export default function Home() {
           >
             <Input
               type="number"
-              placeholder="Input a number"
+              placeholder="Preço"
               onBlur={(e) => {
                 setProduto({...produto, preco: e.target.value, margem: e.target.value - produto.custoPreco})
               }}
@@ -185,13 +185,13 @@ export default function Home() {
 
           <TooltipAntd
             trigger={['focus']}
-            title="Custo variável"
+            title="Custo Variável"
             placement="topLeft"
             overlayClassName="numeric-input"
           >
             <Input
               type="number"
-              placeholder="Input a number"
+              placeholder="Custo Variável"
               onBlur={(e) => {
                 setProduto({...produto, custoPreco: e.target.value, margem: produto.preco - e.target.value})
               }}
