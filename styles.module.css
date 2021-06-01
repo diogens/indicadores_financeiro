@@ -6,6 +6,17 @@
   transition: 100ms ease-in background;
 }
 
+.wrapperContainer h1 {
+  font-size: 3rem;
+  color: #888;
+  font-weight: bold;
+}
+
+.wrapperContainer h2 {
+  font-size: 2.5rem;
+  color: #888;
+}
+
 .wrapperContainer:hover {
   background: #ccc;
 }

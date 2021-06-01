@@ -164,6 +164,8 @@ export default function Home() {
   
   return (
     <div className={styles.wrapperContainer}>
+      <h1>Indicador Financeiro</h1>
+      <h2>Ponto de Equilibrio Econômico</h2>
       <div style={{display: 'flex', flexDirection: 'row'}}>
         <span>
           <h3>Produto</h3>
