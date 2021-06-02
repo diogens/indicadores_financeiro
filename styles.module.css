@@ -25,7 +25,7 @@
   width: 300px;
 }
 
-/* .wrapperBox {
-  background-color: aquamarine;
-  width: 200px;
-} */
+.wrapperBox {
+  margin: 0 30px;
+  width: 100%;
+}

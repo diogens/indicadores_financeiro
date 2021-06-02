@@ -158,8 +158,14 @@ export default function Home() {
     Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number)
   }
 
-  
+  const dv = custoFixo / produto.margem
+  const soma =  (parseInt(custoFixo) + parseInt(dv)) / produto.custoPreco
   /* Functions */
+
+  console.log(custoFixo)
+  console.log(produto.margem)
+  console.log(dv)
+  console.log(soma)
   
   
   return (
@@ -248,9 +254,25 @@ export default function Home() {
               maxLength={25}
             />
           </TooltipAntd>  
+
+          <hr />
+
+          <h3>Ponto de Equilíbrio Econômico </h3>
+          <TooltipAntd
+            trigger={['focus']}
+            title="{title}"
+            placement="topLeft"
+            overlayClassName="numeric-input"
+          >
+            <Input
+              disabled 
+              value={ `R$ ${ parseInt(soma)| 0}` }
+              maxLength={25}
+            />
+          </TooltipAntd>  
         </span>
         <span className={styles.wrapperBox}> 
-          <LineChart width={500} height={300}>
+          <LineChart width={500} height={400}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="category" type="number" name="stature"/>
             <YAxis dataKey="value" />
